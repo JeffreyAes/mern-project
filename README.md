@@ -1,0 +1,1 @@
+This is a project for my mern stack at the coding dojo. The goal of this project is to create a website where artists can upload and host their art, and share with their community.
