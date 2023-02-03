@@ -9,7 +9,6 @@ const UserRegister = (props) => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([])
 
-
     const onSubmitHandler = e => {
         e.preventDefault();
         axios.post('http://localhost:8000/api/register',   {
@@ -52,13 +51,13 @@ const UserRegister = (props) => {
                     </p>
                     <p>
                         <label>Password: </label><br />
-                        <input type="text" onChange={(e) => setPassword(e.target.value)} value={password} />
+                        <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} />
                     </p>
                     <p>
                         <label>Confirm Password: </label><br />
-                        <input type="text" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} />
+                        <input type="password" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} />
                     </p>
-                    <input className='btn btn-success' type="submit" />
+                    <input className='btn btn-success' type="submit" value='Register' />
                 </form>
             </div>
         </div>
