@@ -3,11 +3,7 @@ const myFirstSecret = process.env.FIRST_SECRET_KEY;
 const jwt = require("jsonwebtoken");
 
 module.exports.register = async (req, res) => {
-    User.create(req.body)({
-        username,
-        email,
-        password
-    })
+    User.create(req.body)
         .then(user => {
             const userToken = jwt.sign({
                 id: user._id
@@ -18,7 +14,7 @@ module.exports.register = async (req, res) => {
                 })
                 .json({ msg: "success!", user: user._id });
         })
-        .catch(err => res.json(err));
+        .catch(err => res.status(400).json(err))
 }
 
 
