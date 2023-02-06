@@ -12,9 +12,15 @@ module.exports.getAllCollections = (request, response) => {
         .catch(err => response.json(err))
 }
 
+module.exports.getAllUsersCollections = (request, response) => {
+    Gallery.find({user_id: request.params.id})
+        .then(collections => response.json(collections))
+        .catch(err => response.json(err))
+}
+
 module.exports.getCollection = (request, response) => {
     Gallery.findOne({ _id: request.params.id })
-        .then(colelction => response.json(collection))
+        .then(collection => response.json(collection))
         .catch(err => response.json(err))
 }
 

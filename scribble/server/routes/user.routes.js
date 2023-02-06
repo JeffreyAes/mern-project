@@ -14,6 +14,7 @@ module.exports = function (app) {
     app.get("/api/gallery", GalleryController.getAllCollections);
     app.get("/api/gallery/:id", GalleryController.getCollection);
     app.put('/api/gallery/:id', GalleryController.updateCollection);
+    app.get("/api/gallery/user/:id", GalleryController.getAllUsersCollections);
     app.delete("/api/delete/gallery/:id", GalleryController.deleteCollection );
 
 

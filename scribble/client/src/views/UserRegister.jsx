@@ -11,29 +11,24 @@ const UserRegister = (props) => {
 
     const onSubmitHandler = e => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/register',   {
+        axios.post('http://localhost:8000/api/register', {
             username,
             email,
             password,
             confirmPassword
-        },{ withCredentials: true })
+        }, { withCredentials: true })
             .then(res => {
-                console.log(res)
-                navigate('/dashboard')
+                props.setLogged(true)
+                navigate(`/dashboard/${res.data.id}`)
             })
-            // If successful, do something with the response. 
             .catch(err => {
-                console.log(err.response.data)
-                const errorResponse = err.response.data.errors;
-                // Get the errors from err.response.data
-                const errorArr = [];
-                // Define a temp error array to push the messages in
+                console.log(err.response.data.errors)
+                const errorResponse = err.response.data.errors
+                const errArr = []
                 for (const key of Object.keys(errorResponse)) {
-                    // Loop through all errors and get the messages
-                    errorArr.push(errorResponse[key].message)
+                    errArr.push(errorResponse[key].message)
                 }
-                // Set Errors
-                setErrors(errorArr);
+                setErrors(err.response.data.errors.hasOwnProperty("email") ? [err.response.data.errors["email"]] : errArr)
             })
     }
 

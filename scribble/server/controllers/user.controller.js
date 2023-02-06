@@ -5,18 +5,18 @@ const jwt = require("jsonwebtoken");
 module.exports.register = async (req, res) => {
     User.create(req.body)
         .then(user => {
-            const userToken = jwt.sign({
-                id: user._id
-            }, myFirstSecret);
             res
-                .cookie("usertoken", userToken, {
-                    httpOnly: true
-                })
-                .json({ msg: "success!", user: user._id });
+                .cookie(
+                    "usertoken",
+                    jwt.sign({ id: user._id }, process.env.SECRET_KEY),
+                    {
+                        httpOnly: true,
+                    }
+                )
+                .json({ msg: "success!", id: user._id });
         })
         .catch(err => res.status(400).json(err))
 }
-
 
 module.exports.login = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });

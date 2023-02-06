@@ -1,13 +1,14 @@
 const mongoose = require('mongoose')
 const GallerySchema = new mongoose.Schema({
-    collectionName: [{
+    collectionList: [{
 
         user_id: {
             type: String
         },
         title: {
             type: String,
-            required: [true, "Title required"]
+            required: [true, "Title required"],
+            unique: [true, "Title must be unique"]
         },
         image: {
             type: String,
@@ -15,7 +16,8 @@ const GallerySchema = new mongoose.Schema({
         },
         description: {
             type: String
-        }
+        },
+        
         // comments: {
         //     type: [String],
         //     default: []
@@ -24,7 +26,8 @@ const GallerySchema = new mongoose.Schema({
     
     default: [],
     user_id: {
-        type: String
+        type: String,
+        required: [true, "id is required"]
     },
 
     collectionTitle: {
