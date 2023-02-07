@@ -17,6 +17,7 @@ const UserLogin = (props) => {
         }, { withCredentials: true })
             .then(res => {
                 props.setLogged(true)
+                console.log(res.data)
                 navigate(`/dashboard/${res.data.id}`)
             })
             .catch(err => {

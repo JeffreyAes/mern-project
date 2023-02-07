@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import Logout from '../components/Logout';
 const Profile = (props) => {
     const { user_id } = useParams();
     const [gallerys, setGallerys] = useState();
@@ -20,7 +21,7 @@ const Profile = (props) => {
             <div className='d-flex gap-3'>
             <Link to={`/dashboard/${user_id}`} >dashboard</Link>
                 <Link to={`/gallery/create/${user_id}`}>Add a Gallery</Link>
-
+            <Logout />
             </div>
             <div className="text-center">
 
