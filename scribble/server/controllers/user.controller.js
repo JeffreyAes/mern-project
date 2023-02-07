@@ -24,7 +24,7 @@ module.exports.register = async (req, res) => {
             res
                 .cookie(
                     "usertoken",
-                    jwt.sign({ id: user._id }, process.env.SECRET_KEY),
+                    jwt.sign({ id: user._id }, process.env.FIRST_SECRET_KEY),
                     {
                         httpOnly: true,
                     }
@@ -59,7 +59,7 @@ module.exports.login = async (req, res) => {
     // if we made it this far, the password was correct
     const userToken = jwt.sign({
         id: user._id
-    }, process.env.SECRET_KEY);
+    }, process.env.FIRST_SECRET_KEY);
 
     // note that the response object allows chained calls to cookie and json
     res
