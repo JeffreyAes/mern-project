@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import UserLogin from './UserLogin';
-const UserRegister = (props) => {
+const UserLogin = (props) => {
     const navigate = useNavigate()
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -12,37 +11,31 @@ const UserRegister = (props) => {
 
     const onSubmitHandler = e => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/register', {
-            username,
+        axios.post('http://localhost:8000/api/login', {
             email,
             password,
-            confirmPassword
         }, { withCredentials: true })
             .then(res => {
                 props.setLogged(true)
                 navigate(`/dashboard/${res.data.id}`)
             })
             .catch(err => {
-                console.log(err.response.data.errors)
+                console.log(err.response)
                 const errorResponse = err.response.data.errors
                 const errArr = []
                 for (const key of Object.keys(errorResponse)) {
                     errArr.push(errorResponse[key].message)
                 }
-                setErrors(err.response.data.errors.hasOwnProperty("email") ? [err.response.data.errors["email"]] : errArr)
             })
     }
 
     return (
         <div className='container mt-3'>
             <div className="text-center">
-                <div className='d-flex justify-content-center'>
 
-
-                <form className='me-3' onSubmit={onSubmitHandler}>
+                <form onSubmit={onSubmitHandler}>
                     {errors.map((err, index) => <p className="text-danger" key={index}>{err}</p>)}
-                    <label>Username: </label><br />
-                    <input type="text" onChange={(e) => setUsername(e.target.value)} value={username} />
+
                     <p>
                         <label>Email: </label><br />
                         <input type="text" onChange={(e) => setEmail(e.target.value)} value={email} />
@@ -51,17 +44,11 @@ const UserRegister = (props) => {
                         <label>Password: </label><br />
                         <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} />
                     </p>
-                    <p>
-                        <label>Confirm Password: </label><br />
-                        <input type="password" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} />
-                    </p>
-                    <input className='btn btn-success' type="submit" value='Register' />
+                    <input className='btn btn-success' type="submit" value='Login' />
                 </form>
-                <div className="me-3">{<UserLogin logged={props.logged} setLogged={props.setLogged} />}</div>
-                </div>
             </div>
         </div>
     )
 }
 
-export default UserRegister
+export default UserLogin

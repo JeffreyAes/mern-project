@@ -18,12 +18,13 @@ const Profile = (props) => {
     return (
         <div className='container mt-3'>
             <div className='d-flex gap-3'>
+            <Link to={`/dashboard/${user_id}`} >dashboard</Link>
+                <Link to={`/gallery/create/${user_id}`}>Add a Gallery</Link>
 
             </div>
             <div className="text-center">
 
-
-                <Link to={`/gallery/create/${user_id}`}>Add a Gallery</Link>
+                
                 <div>
                     <div className="col-sm-12">
 

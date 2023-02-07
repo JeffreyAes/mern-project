@@ -26,7 +26,7 @@ const PostCreate = (props) => {
         })
             .then(res => {
                 props.setGallery(res.data)
-                navigate('/gallery/' + id)
+                navigate(`/gallery/${props.gallery._id}`)
             })
             .catch(err => {
                 const errorResponse = err.response.data.errors;

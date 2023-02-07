@@ -21,6 +21,7 @@ const GalleryCreate = (props) => {
             })
             // If successful, do something with the response. 
             .catch(err => {
+                console.log(err)
                 const errorResponse = err.response.data.errors;
                 // Get the errors from err.response.data
                 const errorArr = [];

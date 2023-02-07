@@ -6,9 +6,11 @@ import Profile from './views/Profile';
 import UserRegister from './views/UserRegister';
 import GalleryCreate from './views/GalleryViews/GalleryCreate';
 import GalleryList from './views/GalleryViews/GalleryList';
+import PostCreate from './views/GalleryViews/PostCreate';
 
 function App() {
   const [logged, setLogged] = useState(null)
+  const [gallery, setGallery] = useState()
   return (
     <div className="App">
       <div>
@@ -18,7 +20,8 @@ function App() {
           <Route element={<Dashboard logged={logged} setLogged={setLogged} />} path='/dashboard/:id' ></Route>
           <Route element={<Profile />} path='/profile/:user_id' ></Route>
           <Route element={<GalleryCreate />} path='/gallery/create/:user_id' ></Route>
-          <Route element={<GalleryList />} path='/gallery/:id' ></Route>
+          <Route element={<GalleryList gallery={gallery} setGallery={setGallery} />} path='/gallery/:id' ></Route>
+          <Route element={<PostCreate gallery={gallery} setGallery={setGallery} />} path='gallery/post/new' ></Route>
         </Routes>
       </div>
     </div>

@@ -32,7 +32,7 @@ const GallerySchema = new mongoose.Schema({
 
     collectionTitle: {
         type: String,
-        required: true
+        required: [true, "title is required"]
     },
     about: {
         type: String

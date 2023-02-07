@@ -1,6 +1,7 @@
 const { User } = require('../models/user.model')
 const myFirstSecret = process.env.FIRST_SECRET_KEY;
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
 
 module.exports.register = async (req, res) => {
     User.create(req.body)
@@ -38,7 +39,7 @@ module.exports.login = async (req, res) => {
     // if we made it this far, the password was correct
     const userToken = jwt.sign({
         id: user._id
-    }, myFirstSecret);
+    }, process.env.SECRET_KEY);
 
     // note that the response object allows chained calls to cookie and json
     res
