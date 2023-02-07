@@ -23,10 +23,11 @@ const UserLogin = (props) => {
             .catch(err => {
                 console.log(err.response)
                 const errorResponse = err.response.data.errors
-                const errArr = []
+                const errorArr = []
                 for (const key of Object.keys(errorResponse)) {
-                    errArr.push(errorResponse[key].message)
+                    errorArr.push(errorResponse[key])
                 }
+                setErrors(errorArr);
             })
     }
 
