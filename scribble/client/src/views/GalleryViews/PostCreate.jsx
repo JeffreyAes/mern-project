@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
-import { useParams, useNavigate, Link } from "react-router-dom";
+import {  useNavigate} from "react-router-dom";
 
 const PostCreate = (props) => {
     const navigate = useNavigate();
-    const { id } = useParams();
     const [title, setTitle] = useState("");
     const [image, setImage] = useState("");
     const [description, setDescription] = useState("");
     const [errors, setErrors] = useState([]);
-    const [index, setIndex] = useState(0);
 
     const onHandleSubmit = (e) => {
         e.preventDefault()

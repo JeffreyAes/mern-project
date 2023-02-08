@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const UserLogin = (props) => {
     const navigate = useNavigate()
-    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([])
 
     const onSubmitHandler = e => {

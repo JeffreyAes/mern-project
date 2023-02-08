@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import PostCreate from './PostCreate';
+import { Link, useParams } from 'react-router-dom';
 const GalleryList = (props) => {
     const { id } = useParams();
     const gallery = props.gallery;
@@ -30,7 +29,7 @@ const GalleryList = (props) => {
                         <h1>
                             {gallery.title}
                         </h1>
-                        <img src={gallery.image} width='200px' height='200px' alt="image" />
+                        <img src={gallery.image} width='200px' height='200px' alt="post" />
 
                     </div>
                 </div>
