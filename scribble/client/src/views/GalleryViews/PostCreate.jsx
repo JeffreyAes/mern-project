@@ -8,6 +8,7 @@ const PostCreate = (props) => {
     const [image, setImage] = useState("");
     const [description, setDescription] = useState("");
     const [errors, setErrors] = useState([]);
+    const logged_user = localStorage.getItem('user_id');
 
     const onHandleSubmit = (e) => {
         e.preventDefault()

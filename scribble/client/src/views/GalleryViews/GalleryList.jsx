@@ -7,6 +7,7 @@ const GalleryList = (props) => {
     const [user_id, setUser_id] = useState("")
     const setGallery = props.setGallery;
     const [loaded, setLoaded] = useState(false);
+    const logged_user = localStorage.getItem('user_id');
     useEffect(() => {
         axios.get('http://localhost:8000/api/gallery/' + id)
             .then(res => {
@@ -36,7 +37,11 @@ const GalleryList = (props) => {
 
             )}
                     <div className='d-flex gap-3'>
-                        <Link to='/gallery/post/new' >add to gallery</Link>
+                        {
+                            logged_user === user_id?
+                            <Link to='/gallery/post/new' >add to gallery</Link>
+                            :""
+                        }
                         < Link to={`/profile/${user_id}`} >Artist</Link>
                     </div>
         </div >
