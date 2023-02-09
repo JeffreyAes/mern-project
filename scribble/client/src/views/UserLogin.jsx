@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
 const UserLogin = (props) => {
     const navigate = useNavigate()
     const [email, setEmail] = useState("");
@@ -15,6 +20,7 @@ const UserLogin = (props) => {
         }, { withCredentials: true })
             .then(res => {
                 props.setLogged(true)
+                localStorage.setItem('user_id', res.data.id);
                 console.log(res.data)
                 navigate(`/dashboard/${res.data.id}`)
             })
@@ -33,19 +39,36 @@ const UserLogin = (props) => {
         <div className='container mt-3'>
             <div className="text-center">
 
-                <form onSubmit={onSubmitHandler}>
-                    {errors.map((err, index) => <p className="text-danger" key={index}>{err}</p>)}
-
-                    <p>
-                        <label>Email: </label><br />
-                        <input type="text" onChange={(e) => setEmail(e.target.value)} value={email} />
-                    </p>
-                    <p>
-                        <label>Password: </label><br />
-                        <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} />
-                    </p>
-                    <input className='btn btn-success' type="submit" value='Login' />
-                </form>
+                <Box
+                    component="form"
+                    sx={{
+                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                    onSubmit={onSubmitHandler}
+                >
+                    {errors.map((err, index) => <p className="text-danger" key={index}>{err.message || errors}  </p>)}
+                    <div>
+                        <TextField
+                            id="standard-search"
+                            label="Email"
+                            type="text"
+                            variant="standard"
+                            onChange={(e) => setEmail(e.target.value)} value={email}
+                        />
+                    </div>
+                    <div>
+                        <TextField
+                            id="standard-search"
+                            label="Password"
+                            type="password"
+                            variant="standard"
+                            onChange={(e) => setPassword(e.target.value)} value={password}
+                        />
+                    </div>
+                    <Button type='submit' variant="contained" color="success">Login</Button>
+                </Box>
             </div>
         </div>
     )

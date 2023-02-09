@@ -5,6 +5,7 @@ const Logout = (props) => {
     const logout = (e) => {
         axios.get('http://localhost:8000/api/logout', { withCredentials: true })
         .then(res => {
+            localStorage.clear();
             console.log(res.data)
             navigate('/')
         })

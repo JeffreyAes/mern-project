@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import UserLogin from './UserLogin';
+
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
 const UserRegister = (props) => {
     const navigate = useNavigate()
     const [username, setUsername] = useState("");
@@ -37,27 +42,57 @@ const UserRegister = (props) => {
     return (
         <div className='container mt-3'>
             <div className="text-center">
-                <div className='d-flex justify-content-center'>
+                <div className='d-flex justify-content-center '>
 
 
-                    <form className='me-3' onSubmit={onSubmitHandler}>
+                    <Box className='me-3'
+                        component="form"
+                        sx={{
+                            '& .MuiTextField-root': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                        onSubmit={onSubmitHandler}
+                    >
                         {errors.map((err, index) => <p className="text-danger" key={index}>{err.message || errors}  </p>)}
-                        <label>Username: </label><br />
-                        <input type="text" onChange={(e) => setUsername(e.target.value)} value={username} />
-                        <p>
-                            <label>Email: </label><br />
-                            <input type="text" onChange={(e) => setEmail(e.target.value)} value={email} />
-                        </p>
-                        <p>
-                            <label>Password: </label><br />
-                            <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} />
-                        </p>
-                        <p>
-                            <label>Confirm Password: </label><br />
-                            <input type="password" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} />
-                        </p>
-                        <input className='btn btn-success' type="submit" value='Register' />
-                    </form>
+                        <div>
+                            <TextField
+                                id="standard-search"
+                                label="Username"
+                                type="text"
+                                variant="standard"
+                                onChange={(e) => setUsername(e.target.value)} value={username}
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                id="standard-search"
+                                label="Email"
+                                type="text"
+                                variant="standard"
+                                onChange={(e) => setEmail(e.target.value)} value={email}
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                id="standard-search"
+                                label="Password"
+                                type="password"
+                                variant="standard"
+                                onChange={(e) => setPassword(e.target.value)} value={password}
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                id="standard-search"
+                                label="Confirm Password"
+                                type="password"
+                                variant="standard"
+                                onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword}
+                            />
+                        </div>
+                        <Button type='submit' variant="contained" color="success">Register</Button>
+                    </Box>
                     <div className="me-3">{<UserLogin logged={props.logged} setLogged={props.setLogged} />}</div>
                 </div>
             </div>
