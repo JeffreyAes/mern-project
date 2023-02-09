@@ -31,17 +31,15 @@ const Profile = (props) => {
         <div>
 
 
-            <Scribblenavbar />
+            {/* <Scribblenavbar /> */}
             <div className='container mt-3'>
                 <h1>{artist.username}</h1>
                 <div className='d-flex gap-3'>
-                    <Link to={`/dashboard/${logged_user}`} >dashboard</Link>
                     {
                         user_id === logged_user ?
                             <Link to={`/gallery/create/${user_id}`}>Add a Gallery</Link>
                             : ""
                     }
-                    <Logout />
                 </div>
                 <div className="text-center">
                     <div>

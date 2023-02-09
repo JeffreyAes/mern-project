@@ -22,7 +22,7 @@ const UserLogin = (props) => {
                 props.setLogged(true)
                 localStorage.setItem('user_id', res.data.id);
                 console.log(res.data)
-                navigate(`/dashboard/${res.data.id}`)
+                navigate(`/dashboard/`)
             })
             .catch(err => {
                 console.log(err.response)

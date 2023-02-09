@@ -8,7 +8,7 @@ const Dashboard = (props) => {
 
     return (
         <div>
-        <Scribblenavbar />
+        {/* <Scribblenavbar /> */}
         </div>
         )
         

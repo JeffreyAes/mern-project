@@ -7,6 +7,8 @@ import UserRegister from './views/UserRegister';
 import GalleryCreate from './views/GalleryViews/GalleryCreate';
 import GalleryList from './views/GalleryViews/GalleryList';
 import PostCreate from './views/GalleryViews/PostCreate';
+import Scribblenavbar from './components/Navbar';
+
 
 function App() {
   const [logged, setLogged] = useState(null)
@@ -14,10 +16,11 @@ function App() {
   return (
     <div className="App">
       <div>
+        <Scribblenavbar />
         <Routes>
           <Route element={<Navigate to='/register'  replace />}  path='/' ></Route>
           <Route element={<UserRegister setLogged={setLogged} logged={logged} />} path='/register' ></Route>
-          <Route element={<Dashboard logged={logged} setLogged={setLogged} />} path='/dashboard/:id' ></Route>
+          <Route element={<Dashboard logged={logged} setLogged={setLogged} />} path='/dashboard/' ></Route>
           <Route element={<Profile />} path='/profile/:user_id' ></Route>
           <Route element={<GalleryCreate />} path='/gallery/create/:user_id' ></Route>
           <Route element={<GalleryList gallery={gallery} setGallery={setGallery} />} path='/gallery/:id' ></Route>

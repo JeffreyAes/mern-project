@@ -26,7 +26,7 @@ const UserRegister = (props) => {
             .then(res => {
                 props.setLogged(true)
                 localStorage.setItem('user_id', res.data.id);
-                navigate(`/dashboard/${res.data.id}`)
+                navigate(`/dashboard/`)
             })
             .catch(err => {
                 const errorResponse = err.response.data.errors
