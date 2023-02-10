@@ -3,19 +3,18 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 const GalleryList = (props) => {
     const { id } = useParams();
-    const gallery = props.gallery;
-    const [user_id, setUser_id] = useState("")
-    const setGallery = props.setGallery;
+    const { index } = useParams();
+    const user = props.user
+    const setUser = props.setUser
     const [loaded, setLoaded] = useState(false);
     const logged_user = localStorage.getItem('user_id');
-    useEffect(() => {
-        axios.get('http://localhost:8000/api/gallery/' + id)
-            .then(res => {
-                setGallery(res.data);
-                setUser_id(res.data.user_id)
-                console.log(res.data)
-                setLoaded(true);
+    
 
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/users/' + id)
+            .then(res => {
+                setUser(res.data);
+                setLoaded(true);
             })
             .catch(err => console.error(err));
     }, []);
@@ -23,7 +22,7 @@ const GalleryList = (props) => {
     return (
 
         <div>
-            {loaded && gallery.collectionList.map((gallery, i) =>
+            {loaded && user.gallery[index].galleryList?.map((gallery, i) =>
 
                 <div className="border p-2 m-3 shadow rounded " key={i}>
                     <div>
@@ -38,11 +37,11 @@ const GalleryList = (props) => {
             )}
                     <div className='d-flex gap-3'>
                         {
-                            logged_user === user_id?
-                            <Link to='/gallery/post/new' >add to gallery</Link>
+                            logged_user === id?
+                            <Link to={`/gallery/post/new/${index}`} >add to gallery</Link>
                             :""
                         }
-                        < Link to={`/profile/${user_id}`} >Artist</Link>
+                        < Link to={`/profile/${id}`} >Artist</Link>
                     </div>
         </div >
     )

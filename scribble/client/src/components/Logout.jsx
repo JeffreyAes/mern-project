@@ -7,6 +7,7 @@ const Logout = (props) => {
         .then(res => {
             localStorage.clear();
             console.log(res.data)
+            localStorage.removeItem('logged_user');
             navigate('/')
         })
         .catch(err => console.error(err));

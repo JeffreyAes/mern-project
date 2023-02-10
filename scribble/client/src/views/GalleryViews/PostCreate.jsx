@@ -1,33 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import {  useNavigate} from "react-router-dom";
+import {  useNavigate, useParams} from "react-router-dom";
 
 const PostCreate = (props) => {
     const navigate = useNavigate();
     const [title, setTitle] = useState("");
+    const {index} = useParams()
     const [image, setImage] = useState("");
     const [description, setDescription] = useState("");
+    const user = props.user
+    const setUser = props.setUser
     const [errors, setErrors] = useState([]);
     const logged_user = localStorage.getItem('user_id');
 
+
+
     const onHandleSubmit = (e) => {
         e.preventDefault()
-        console.log(props.gallery.collectionList)
-        let arr = props.gallery.collectionList
-        arr.push({
-            user_id: props.gallery.user_id,
-            title: title,
-            image: image,
-            description: description,
+        let arr = user.gallery
+        console.log( arr)
+        arr[index].galleryList.push({
+            title,
+            image,
+            description,
         })
-        axios.put(`http://localhost:8000/api/gallery/${props.gallery._id}`, {
-            collectionList: arr
-        })
+        axios.put(`http://localhost:8000/api/users/${user._id}`, {
+            gallery: arr
+        },{ withCredentials: true })
             .then(res => {
-                props.setGallery(res.data)
-                navigate(`/gallery/${props.gallery._id}`)
+                setUser(res.data)
+                navigate(`/gallery/${user._id}/${index}`)
             })
             .catch(err => {
+                console.log(err)
                 const errorResponse = err.response.data.errors;
                 // Get the errors from err.response.data
                 const errorArr = [];

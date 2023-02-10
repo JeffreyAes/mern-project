@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 const GalleryCreate = (props) => {
@@ -7,16 +7,24 @@ const GalleryCreate = (props) => {
     const [about, setAbout] = useState("");
     const [errors, setErrors] = useState([]);
     const { user_id } = useParams();
+    const user = props.user;
+    const setUser= props.user
+
 
     const onSubmitHandler = e => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/gallery', {
+        let arr = user.gallery
+        arr.push({
             collectionTitle,
             about,
-            user_id
+            user_id: user_id,
+            galleryList: [],
         })
+        axios.put('http://localhost:8000/api/users/' + user_id, {
+            gallery: arr
+        }, { withCredentials: true })
             .then(res => {
-                navigate(`/profile/${res.data.user_id}`)
+                navigate(`/profile/${res.data._id}`)
                 console.log(res)
             })
             // If successful, do something with the response. 

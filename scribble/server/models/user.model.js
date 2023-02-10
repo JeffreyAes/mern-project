@@ -23,10 +23,14 @@ const UserSchema = new mongoose.Schema({
         minlength: [8, "Password must be 8 characters or longer"]
     },
     followers: {
-        type: [Object],
+        type: [String],
         default: []
     },
     following: {
+        type: [String],
+        default: []
+    },
+    gallery: {
         type: [Object],
         default: []
     }

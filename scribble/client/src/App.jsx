@@ -12,7 +12,7 @@ import Scribblenavbar from './components/Navbar';
 
 function App() {
   const [logged, setLogged] = useState(null)
-  const [gallery, setGallery] = useState()
+  const [user, setUser] = useState()
   return (
     <div className="App">
       <div>
@@ -21,10 +21,10 @@ function App() {
           <Route element={<Navigate to='/register'  replace />}  path='/' ></Route>
           <Route element={<UserRegister setLogged={setLogged} logged={logged} />} path='/register' ></Route>
           <Route element={<Dashboard logged={logged} setLogged={setLogged} />} path='/dashboard/' ></Route>
-          <Route element={<Profile />} path='/profile/:user_id' ></Route>
-          <Route element={<GalleryCreate />} path='/gallery/create/:user_id' ></Route>
-          <Route element={<GalleryList gallery={gallery} setGallery={setGallery} />} path='/gallery/:id' ></Route>
-          <Route element={<PostCreate gallery={gallery} setGallery={setGallery} />} path='gallery/post/new' ></Route>
+          <Route element={<Profile user={user} setUser={setUser} />} path='/profile/:user_id' ></Route>
+          <Route element={<GalleryCreate user={user} setUser={setUser} />} path='/gallery/create/:user_id' ></Route>
+          <Route element={<GalleryList user={user} setUser={setUser} />} path='/gallery/:id/:index' ></Route>
+          <Route element={<PostCreate user={user} setUser={setUser} />} path='gallery/post/new/:index' ></Route>
         </Routes>
       </div>
     </div>
