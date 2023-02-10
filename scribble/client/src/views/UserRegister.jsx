@@ -57,7 +57,7 @@ const UserRegister = (props) => {
                         {errors.map((err, index) => <p className="text-danger" key={index}>{err.message || errors}  </p>)}
                         <div>
                             <TextField
-                                id="standard-search"
+                                id="username"
                                 label="Username"
                                 type="text"
                                 variant="standard"
@@ -66,7 +66,7 @@ const UserRegister = (props) => {
                         </div>
                         <div>
                             <TextField
-                                id="standard-search"
+                                id="email"
                                 label="Email"
                                 type="text"
                                 variant="standard"
@@ -75,7 +75,7 @@ const UserRegister = (props) => {
                         </div>
                         <div>
                             <TextField
-                                id="standard-search"
+                                id="password"
                                 label="Password"
                                 type="password"
                                 variant="standard"
@@ -84,7 +84,7 @@ const UserRegister = (props) => {
                         </div>
                         <div>
                             <TextField
-                                id="standard-search"
+                                id="confirm"
                                 label="Confirm Password"
                                 type="password"
                                 variant="standard"

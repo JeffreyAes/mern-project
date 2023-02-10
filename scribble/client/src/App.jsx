@@ -18,7 +18,7 @@ function App() {
       <div>
         <Scribblenavbar />
         <Routes>
-          <Route element={<Navigate to='/register'  replace />}  path='/' ></Route>
+          <Route element={<Navigate to='/register' forceRefresh={true}  replace />}  path='/' ></Route>
           <Route element={<UserRegister setLogged={setLogged} logged={logged} />} path='/register' ></Route>
           <Route element={<Dashboard logged={logged} setLogged={setLogged} />} path='/dashboard/' ></Route>
           <Route element={<Profile user={user} setUser={setUser} />} path='/profile/:user_id' ></Route>

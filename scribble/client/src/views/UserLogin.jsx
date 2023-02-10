@@ -51,7 +51,7 @@ const UserLogin = (props) => {
                     {errors.map((err, index) => <p className="text-danger" key={index}>{err.message || errors}  </p>)}
                     <div>
                         <TextField
-                            id="standard-search"
+                            id="login-email"
                             label="Email"
                             type="text"
                             variant="standard"
@@ -60,7 +60,7 @@ const UserLogin = (props) => {
                     </div>
                     <div>
                         <TextField
-                            id="standard-search"
+                            id="login-password"
                             label="Password"
                             type="password"
                             variant="standard"

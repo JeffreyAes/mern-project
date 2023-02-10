@@ -3,13 +3,12 @@ import { useNavigate} from 'react-router-dom';
 const Logout = (props) => {
     const navigate = useNavigate()
     const logout = (e) => {
-        axios.get('http://localhost:8000/api/logout', { withCredentials: true })
+        axios.get('http://localhost:8000/api/logout',  { withCredentials: true })
         .then(res => {
             localStorage.clear();
             console.log(res.data)
-            localStorage.removeItem('logged_user');
-            navigate('/')
-        })
+            navigate('/register')
+        }, { withCredentials: true })
         .catch(err => console.error(err));
     }
 
